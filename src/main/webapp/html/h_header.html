@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
+</head>
+<body>
+
+<div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-black w3-hover-deep-purple">
+        <em class="fa fa-globe"></em>
+    </button>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-black" style="right: 0">
+        <button class="w3-bar-item w3-button w3-hover-purple"
+                type="submit"
+                value="ru"
+                name="lang">
+            Rus
+        </button>
+        <label>
+            <input class="w3-bar-item w3-button w3-hover-purple"
+                   type="submit"
+                   value="en"
+                   name="lang">
+        </label>
+        <label>
+            <input class="w3-bar-item w3-button w3-hover-purple"
+                   type="submit"
+                   value="en"
+                   name="lang">
+        </label>
+    </div>
+</div>
+
+
+
+<nav aria-label="default_nav" class="w3-bar w3-black w3-large">
+    <a class="w3-bar-item">My Site</a>
+    <a href="${context}/"
+       class="w3-bar-item w3-button w3-hover-deep-purple">Home</a>
+    <a href="${context}/categories"
+       class="w3-bar-item w3-button w3-hover-deep-purple">Categories</a>
+    <a href="${context}/about"
+       class="w3-bar-item w3-button w3-hover-deep-purple">About</a>
+    <a href="${context}/registration"
+       class="w3-bar-item w3-button w3-food-plum w3-right w3-hover-deep-purple">Registration</a>
+    <a href="${context}/authorization"
+       class="w3-bar-item w3-text w3-right">Sign in</a>
+    <div class="w3-dropdown-hover w3-right">
+        <button class="w3-button w3-black w3-hover-deep-purple">
+            <em class="fa fa-globe"></em>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-black">
+            <a href="#" class="w3-bar-item w3-button w3-hover-deep-purple">Rus</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-deep-purple">Eng</a>
+        </div>
+    </div>
+</nav>
+
+    <nav class="w3-bar w3-indigo w3-large">
+        <a class="w3-bar-item w3-deep-purple">My Site</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Home</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Categories</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">About</a>
+        <a href="#" class="w3-bar-item w3-button w3-green w3-right w3-hover-deep-orange">Registration</a>
+        <a href="#" class="w3-bar-item w3-text w3-right">Sign in</a>
+        <div class="w3-dropdown-hover w3-right">
+            <button class="w3-button w3-">Lang</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="#" class="w3-bar-item w3-button">Rus</a>
+                <a href="#" class="w3-bar-item w3-button">Eng</a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

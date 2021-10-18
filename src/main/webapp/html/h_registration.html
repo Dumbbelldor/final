@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="w3-image" style="background-image: url('reg_background.jpg');">
+    <nav class="w3-bar w3-indigo w3-xlarge">
+        <a class="w3-bar-item w3-deep-purple">My Site</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Home</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Categories</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-blue">About</a>
+        <a href="#" class="w3-bar-item w3-button w3-green w3-right w3-hover-deep-orange">Sign in</a>
+    </nav>
+
+    <div class="w3-display-container w3-card-4 w3-display-middle w3-white" style="width: 40%">
+        <header class="w3-container w3-deep-purple">
+            <h2>Authorization</h2>
+        </header>
+        <form action="${pageContext.request.contextPath}/authorization" method="post">
+            <div class="w3-container">
+                <label class="w3-container w3-text-deep-purple">Login
+                    <input class="w3-input w3-border" name="login" type="text" placeholder="Login">
+                </label>
+                <label class="w3-container w3-text-deep-purple">Password
+                    <input class="w3-input w3-border" name="password" type="password" placeholder="Password">
+                </label>
+                <footer class="w3-container w3-padding-16">
+                    <button class="w3-button w3-block w3-round-xxlarge w3-green w3-large w3-hover-deep-orange" type="submit">Sign in</button>
+                </footer>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
