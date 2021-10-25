@@ -1,7 +1,5 @@
 package org.example.model.entity;
 
-import org.example.model.entity.enumeration.Category;
-import org.example.model.entity.enumeration.Difficulty;
 import org.example.model.entity.enumeration.Status;
 
 import java.io.Serial;

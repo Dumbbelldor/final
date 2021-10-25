@@ -17,24 +17,31 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
         function validateForm() {
-            let x = document.forms["answerForm"]["answer"].value;
-            const rightAnswer = "${task.answer}";
+            let x = document.forms["answerForm"]["answer"].value.toLowerCase();
+            const rightAnswer = "${task.answer.toLowerCase()}";
             if (x === "" || x !== rightAnswer) {
-                alert("Your answer is incorrect!");
+                alert(<fmt:message key="text.warning" />);
                 return false;
             }
             return true;
         }
     </script>
+    <style>
+        body {
+            background-image: url(/images/backgrounds/def_background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
+
     <c:import url="/WEB-INF/fragment/header_nav.jsp" />
 
-    <header class="w3-container">
+    <header class="w3-container w3-light-grey">
         <h1>${task.name}</h1>
-        <div class="w3-bar">
-            <div class="w3-bar-item w3-small"><fmt:message key="text.difficulty" />: ${task.difficulty}</div>
-        </div>
+        <p><fmt:message key="text.difficulty" />: ${task.difficulty}</p>
     </header>
     
     <c:if test="${requestScope.taskAlert != null}">
@@ -46,19 +53,19 @@
           onsubmit="return validateForm()"
           method="post">
         <section class="w3-container w3-card-4 w3-white w3-section" style="width: 80%; margin: auto;">
-            <section class="w3-container">
-                <p>${task.description}</p>
+            <div class="w3-container">
+                <c:import url="${task.description}" />
                 <label>
                     <input class="w3-input w3-border-1 w3-border-black"
                            name="answer"
                            type="text"
-                           placeholder="Your answer"
+                           placeholder="<fmt:message key="text.placeholder" />"
                            required style="width: 30%">
-                    <button class="w3-button w3-green w3-hover-deep-orange w3-section"
-                            type="submit"><fmt:message key="button.submit" />
-                    </button>
                 </label>
-            </section>
+                <button class="w3-button w3-green w3-hover-deep-orange w3-section"
+                        type="submit"><fmt:message key="button.submit" />
+                </button>
+            </div>
         </section>
     </form>
     </body>

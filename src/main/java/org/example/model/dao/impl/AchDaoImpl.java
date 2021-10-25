@@ -7,17 +7,16 @@ import org.example.model.util.statement.StatementUtil;
 
 import java.util.List;
 
+/**
+ * An implementation of the {@link AchDao} interface.
+ */
 public class AchDaoImpl extends BaseDaoImpl<Achievement> implements AchDao {
 
     public AchDaoImpl(StatementUtil<Achievement> utils) {
         super(utils);
     }
 
-    @Override
-    public boolean uploadImageByAchId(String sql, String filePath, Long id) {
-        return save(sql, List.of(filePath, id));
-    }
-
+    /**{@inheritDoc}*/
     @Override
     public List<Achievement> findUnclaimedAchForUser(String sql,
                                                      Language lang,

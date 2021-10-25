@@ -15,6 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * An implementation of the {@link TaskDao} interface.
+ */
 public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
 
     private static final Logger log = LogManager.getLogger();
@@ -26,13 +29,7 @@ public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
         this.utils = utils;
     }
 
-    @Override
-    public Optional<Task> findByName(String sql,
-                                     Language lang,
-                                     String name) {
-        return find(sql, lang, List.of(name));
-    }
-
+    /**{@inheritDoc}*/
     @Override
     public List<Task> findByCategory(String sql,
                                      Language lang,
@@ -40,6 +37,7 @@ public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
         return findAll(sql, lang, List.of(category.name()));
     }
 
+    /**{@inheritDoc}*/
     @Override
     public final Map<String, Integer> countTasksForAllCategories(String sql,
                                                                  Language lang,
@@ -64,6 +62,7 @@ public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
         return result;
     }
 
+    /**{@inheritDoc}*/
     @Override
     public boolean isSolvedTaskPresent(String sql, Long userId, Long taskId) {
         boolean flag = false;
@@ -71,7 +70,8 @@ public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
              PreparedStatement statement = connection
                      .prepareStatement(sql)) {
             utils.fillStatement(statement, List.of(userId, taskId));
-            if (statement.execute()) {
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
                 flag = true;
             }
         } catch (SQLException e) {
@@ -80,6 +80,7 @@ public class TaskDaoImpl extends BaseDaoImpl<Task> implements TaskDao {
         return flag;
     }
 
+    /**{@inheritDoc}*/
     @Override
     public List<LocalizedCategory> findAllTaskCategories(String sql, Language lang) {
         String localizedSql = createLocalizedSql(sql, lang);

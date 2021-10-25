@@ -39,18 +39,6 @@ public interface StatementUtil<T extends Entity> {
     void fillStatementWithEntity(PreparedStatement statement, T entity) throws SQLException;
 
     /**
-     * Calls {@link #fillStatementWithEntity(PreparedStatement, Entity)} that
-     * much times as many entities are given and prepares statement for transaction.
-     *
-     * @param statement a prepared statement to be filled
-     * @param entities a {@link List} of entities
-     *
-     * @throws SQLException if the statement is inappropriate
-     */
-    void fillStatementWithEntities(PreparedStatement statement, List<T> entities)
-            throws SQLException;
-
-    /**
      * Method for filling the given {@link PreparedStatement}
      * with numerous params.
      *

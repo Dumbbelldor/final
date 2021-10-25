@@ -70,6 +70,18 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     /**{@inheritDoc}*/
     @Override
     public long countSolvedForUser(String sql, Long userId) {
-        return count(sql, List.of(userId));
+        long result = 0;
+        try (ProxyConnection connection = pool.getConnection();
+             PreparedStatement statement = connection
+                     .prepareStatement(sql)) {
+            utils.fillStatement(statement, List.of(userId));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                result = rs.getLong(PARAM_FIRST);
+            }
+        } catch (SQLException e) {
+            log.error(ERROR_SQL, e);
+        }
+        return result;
     }
 }

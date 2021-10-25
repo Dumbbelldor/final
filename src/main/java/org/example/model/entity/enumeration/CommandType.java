@@ -3,6 +3,10 @@ package org.example.model.entity.enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Used in conjunction with the {@link org.example.model.util.helper.RequestHelper}
+ * to provide destination points for navigation.
+ */
 public enum CommandType {
 
     GOTO_HOME("/index.jsp", "/"),
@@ -39,10 +43,22 @@ public enum CommandType {
         return referrer;
     }
 
+    /**
+     * Returns the enum constant by its referrer,
+     * otherwise returns {@link #GOTO_HOME}.
+     *
+     * @param referrer a referrer
+     *
+     * @return the enum constant
+     */
     public static CommandType getByReferrer(String referrer) {
         return map.getOrDefault(referrer, CommandType.GOTO_HOME);
     }
 
+    /**
+     * Returns a {@link Map} with all available referrers
+     * and corresponding enum constants.
+     */
     public static Map<String, CommandType> getReferrers() {
         return map;
     }

@@ -99,16 +99,4 @@ public enum BasicConnectionPool implements ConnectionPool {
             }
         });
     }
-
-    public int getAvailableConSize() {
-        return availableConnections.size();
-    }
-
-    public int getOccupiedConSize() {
-        return occupiedConnections.size();
-    }
-
-    public int getSize() {
-        return availableConnections.size() + occupiedConnections.size();
-    }
 }

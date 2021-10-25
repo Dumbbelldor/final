@@ -24,9 +24,9 @@ public enum FileValidator implements Validator {
      */
     public boolean validateImage(String filePath) {
         boolean flag = false;
-
-        if (!filePath.isBlank()) {
-            Matcher matcher = Pattern.compile(REGEX_IMAGE_EXT).matcher(filePath);
+        if (filePath != null && !filePath.isBlank()) {
+            Matcher matcher = Pattern.compile(REGEX_IMAGE_EXT)
+                    .matcher(filePath.toLowerCase());
             if (matcher.find()) {
                 flag = true;
             }

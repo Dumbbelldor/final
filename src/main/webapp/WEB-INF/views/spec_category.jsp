@@ -4,7 +4,7 @@
 
 <c:set var="lang" value="${sessionScope.currentLang}" scope="page" />
 <c:set var="tasks" value="${sessionScope.currentTasks}" scope="page" />
-<c:set var="category" value="${sessionScope.currentCategory}" scope="page" />
+<c:set var="category" value="${sessionScope.currentLocalizedCategory}" scope="page" />
 <c:set var="context" value="${pageContext.request.contextPath}" scope="page" />
 
 <fmt:setLocale value="${lang}" />
@@ -17,19 +17,23 @@
         <title>${category}</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
+    <style>
+        body {
+            background-image: url(/images/backgrounds/reg_background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 <body>
     <c:import url="/WEB-INF/fragment/header_nav.jsp" />
 
-    <header class="w3-container">
+    <header class="w3-container w3-light-grey">
         <h2>${category}</h2>
         <p><fmt:message key="text.header.p" /></p>
     </header>
 
-    <c:if test="${requestScope.taskAlert != null}">
-        <c:import url="/WEB-INF/fragment/correct_answer_alert.jsp" />
-    </c:if>
-
-    <section class="w3-container w3-light-grey">
+    <section class="w3-container">
         <form action="${context}/task" method="get">
             <ul class="w3-ul w3-hoverable w3-section w3-white w3-xlarge" style="width: 70%; margin: auto">
                 <c:forEach var="elem" items="${tasks}">
@@ -52,5 +56,6 @@
             </ul>
         </form>
     </section>
+
 </body>
 </html>

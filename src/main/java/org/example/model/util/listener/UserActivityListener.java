@@ -44,13 +44,7 @@ public enum UserActivityListener {
     public void resolveLevelAndExp(RequestHelper helper, User user, Task task)
             throws ServletException {
 
-        LocalizedLevel level = (LocalizedLevel) helper
-                .getSessionAttribute(SESSION_LOCALIZED_LEVEL);
-        if (level == null) {
-            level = userService.getLevelByUserId(
-                    user.getUserId(), Language.ENGLISH);
-        }
-
+        LocalizedLevel level = getLocalizedLevel(helper, user);
         Level nextLevel = level.level();
 
         int currentUserExp = user.getExperience();
@@ -59,7 +53,7 @@ public enum UserActivityListener {
         int resultExp = currentUserExp + rewardExp;
         int remainder = ZERO;
 
-        if (resultExp > expForLvlUp) {
+        if (resultExp >= expForLvlUp) {
             remainder = resultExp - expForLvlUp;
             nextLevel = Level.next(nextLevel);
             resultExp = ZERO;
@@ -91,8 +85,7 @@ public enum UserActivityListener {
 
         long solvedTasks = userService.countSolvedForUser(user.getUserId());
 
-        LocalizedLevel level = (LocalizedLevel) helper
-                .getSessionAttribute(SESSION_LOCALIZED_LEVEL);
+        LocalizedLevel level = getLocalizedLevel(helper, user);
         Level levelConstant = level.level();
 
         for (var elem: unclaimed) {
@@ -124,5 +117,17 @@ public enum UserActivityListener {
                 default -> {}
             }
         }
+    }
+
+    private LocalizedLevel getLocalizedLevel(RequestHelper helper,
+                                             User user) throws ServletException {
+        LocalizedLevel level = (LocalizedLevel) helper
+                .getSessionAttribute(SESSION_LOCALIZED_LEVEL);
+        if (level == null) {
+            level = userService.getLevelByUserId(
+                    user.getUserId(), Language.ENGLISH);
+            helper.setSessionAttribute(SESSION_LOCALIZED_LEVEL, level);
+        }
+        return level;
     }
 }

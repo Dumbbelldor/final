@@ -22,7 +22,7 @@ public enum AchServiceImpl implements AchService {
     private final AchDao achDao;
 
     AchServiceImpl() {
-        achDao = new AchDaoImpl(new AchStatementUtil());
+        achDao = new AchDaoImpl(AchStatementUtil.INSTANCE);
     }
 
     /**{@inheritDoc}*/

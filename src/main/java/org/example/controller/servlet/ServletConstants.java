@@ -13,7 +13,7 @@ public final class ServletConstants {
     public static final String SESSION_CURRENT_TASK = "currentTask";
     public static final String SESSION_LANGUAGE = "currentLang";
     public static final String SESSION_REFERRER = "currentReferrerCT";
-    public static final String SESSION_CHOSEN_CATEGORY = "currentChosenCategory";
+    public static final String SESSION_CATEGORY = "currentCategory";
     public static final String SESSION_LOCALIZED_LEVEL = "currentLocalizedLevel";
     public static final String SESSION_USERS_ACH = "currentUserAch";
 
@@ -30,4 +30,7 @@ public final class ServletConstants {
     public static final String PARAM_ALERT = "alert";
     public static final String PARAM_DELETE_IMAGE = "deleteImage";
     public static final String PARAM_PART_IMAGE = "uploadedPicture";
+
+    /* Logger Messages */
+    public static final String LOG_UNAUTHORIZED_ACCESS = "Unauthorized access was attempted";
 }

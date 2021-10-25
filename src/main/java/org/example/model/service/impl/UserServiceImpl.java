@@ -23,7 +23,7 @@ public enum UserServiceImpl implements UserService {
     private final UserDao userDao;
 
     UserServiceImpl() {
-        userDao = new UserDaoImpl(new UserStatementUtil());
+        userDao = new UserDaoImpl(UserStatementUtil.INSTANCE);
     }
 
     /**{@inheritDoc}*/

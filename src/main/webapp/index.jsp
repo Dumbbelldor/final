@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
 </head>
-<body class="w3-image" style="background-image: url(images/def_background.jpg)">
+<body>
 
     <c:import url="/WEB-INF/fragment/header_nav.jsp" />
 
-    <header class="w3-container w3-center" style="padding: 144px 16px">
+    <header class="w3-container w3-center" style="padding: 144px 16px; background-image: url(images/backgrounds/def_background.jpg)">
         <h1 class="w3-margin w3-jumbo w3-text-light-grey"><fmt:message key="welcome.text.h1" /></h1>
         <p class="w3-xlarge w3-text-light-grey"><fmt:message key="welcome.text.p" /></p>
         <a href="${context}/categories"
@@ -47,8 +47,8 @@
         </div>
     </section>
 
-    <section class="w3-cell-row w3-container w3-food-grape w3-row-padding w3-padding-64">
-        <div class="w3-cell w3-padding-large w3-cell-middle">
+    <section class="w3-cell-row w3-container w3-row-padding w3-padding-64" style="background-image: url(images/backgrounds/reg_background.jpg)">
+        <div class="w3-cell w3-padding-large w3-cell-middle w3-text-light-grey">
             <div class="w3-twothird w3-center">
                 <h1><fmt:message key="section2.text.h1" /></h1>
                 <p class="w3-padding-16"><fmt:message key="section2.text.p.1" /></p>
@@ -61,7 +61,7 @@
         </div>
     </section>
 
-    <section class="w3-cell-row w3-row-padding w3-food-plum w3-padding-64 w3-container">
+    <section class="w3-cell-row w3-row-padding w3-food-aubergine w3-padding-64 w3-container">
         <div class="w3-cell w3-padding-large w3-cell-middle">
             <div class="w3-third w3-center">
                 <em class="fa fa-address-book w3-padding-64 w3-text-orange w3-margin-right"

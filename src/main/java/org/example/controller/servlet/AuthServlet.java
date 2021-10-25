@@ -9,7 +9,7 @@ import org.example.model.entity.enumeration.CommandType;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.util.helper.RequestHelper;
 import org.example.model.entity.User;
-import org.example.model.security.InputCleaner;
+import org.example.model.util.security.InputCleaner;
 import org.example.model.service.UserService;
 import org.example.model.service.impl.UserServiceImpl;
 

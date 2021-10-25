@@ -1,12 +1,14 @@
 package org.example.model.entity.enumeration;
 
+/**
+ * A representation of the primary key for
+ * the Categories database.
+ */
 public enum Category {
 
     MATHEMATICS,
-    RUSSIAN,
-    ENGLISH,
-    LITERATURE,
-    BIOLOGY,
     GEOGRAPHY,
-    HISTORY
+    ECONOMICS,
+    CHEMISTRY,
+    PHYSICS
 }

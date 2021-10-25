@@ -24,7 +24,7 @@ public enum TaskServiceImpl implements TaskService {
     private final TaskDao taskDao;
 
     TaskServiceImpl() {
-        taskDao = new TaskDaoImpl(new TaskStatementUtil());
+        taskDao = new TaskDaoImpl(TaskStatementUtil.INSTANCE);
     }
 
     /**{@inheritDoc}*/

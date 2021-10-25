@@ -7,7 +7,6 @@ import org.example.controller.connection.impl.ProxyConnection;
 import org.example.model.dao.BaseDao;
 import org.example.model.entity.Entity;
 import org.example.model.entity.enumeration.Language;
-import org.example.model.entity.enumeration.Status;
 import org.example.model.util.statement.StatementUtil;
 
 import java.sql.PreparedStatement;
@@ -144,66 +143,6 @@ public class BaseDaoImpl<T extends Entity> implements BaseDao<T> {
             log.error(ERROR_SQL, e);
         }
         return flag;
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public boolean saveAll(String sql, Language lang, List<T> entities) {
-        String localizedSql = createLocalizedSql(sql, lang);
-        boolean flag = false;
-        try (ProxyConnection connection = pool.getConnection();
-             PreparedStatement statement = connection
-                     .prepareStatement(localizedSql)) {
-            connection.setAutoCommit(false);
-            utils.fillStatementWithEntities(statement, entities);
-            statement.executeBatch();
-            flag = true;
-            connection.setAutoCommit(true);
-        } catch (SQLException e) {
-            log.error(ERROR_SQL, e);
-        }
-        return flag;
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public boolean deleteById(String sql, Long id) {
-        boolean flag = false;
-        try (ProxyConnection connection = pool.getConnection();
-             PreparedStatement statement = connection
-                     .prepareStatement(sql)) {
-            statement.setString(PARAM_FIRST, Status.DELETED.name());
-            statement.setLong(PARAM_SECOND, id);
-            statement.executeUpdate();
-            flag = true;
-        } catch (SQLException e) {
-            log.error(ERROR_SQL, e);
-        }
-        return flag;
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public long count(String sql) {
-        return count(sql, null);
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public long count(String sql, List<Object> params) {
-        long result = 0;
-        try (ProxyConnection connection = pool.getConnection();
-             PreparedStatement statement = connection
-                     .prepareStatement(sql)) {
-            utils.fillStatement(statement, params);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                result = rs.getLong(PARAM_FIRST);
-            }
-        } catch (SQLException e) {
-            log.error(ERROR_SQL, e);
-        }
-        return result;
     }
 
     /**

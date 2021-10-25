@@ -11,8 +11,6 @@ import java.util.List;
  */
 public interface AchDao extends BaseDao<Achievement> {
 
-    boolean uploadImageByAchId(String sql, String filePath, Long id);
-
     /**
      * Retrieves a {@link List} of {@link Achievement} from a database with
      * the given SQL command and the localization parameter by the userId.

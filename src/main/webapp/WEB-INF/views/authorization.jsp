@@ -15,7 +15,7 @@
     <title><fmt:message key="text.title" /></title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body class="w3-image" style="background-image: url(/images/reg_background.jpg);">
+<body class="w3-image" style="background-image: url(/images/backgrounds/reg_background.jpg);">
     <c:import url="/WEB-INF/fragment/header_nav.jsp" />
 
     <div class="w3-display-container w3-card-4 w3-display-middle w3-white" style="width: 40%">

@@ -14,7 +14,9 @@ import static org.example.model.util.statement.impl.Constants.*;
 /**
  * An implementation of {@link StatementUtil} for {@link Task} entity.
  */
-public class TaskStatementUtil implements StatementUtil<Task> {
+public enum TaskStatementUtil implements StatementUtil<Task> {
+
+    INSTANCE;
 
     /**{@inheritDoc}*/
     @Override
@@ -41,15 +43,5 @@ public class TaskStatementUtil implements StatementUtil<Task> {
         fillStatement(statement, List.of(entity.getExperience(), entity.getDifficulty(),
                 entity.getCategory(), entity.getName(),
                 entity.getDescription(), entity.getAnswer()));
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public void fillStatementWithEntities(PreparedStatement statement,
-                                          List<Task> entities) throws SQLException {
-        for (var elem: entities) {
-            fillStatementWithEntity(statement, elem);
-            statement.addBatch();
-        }
     }
 }

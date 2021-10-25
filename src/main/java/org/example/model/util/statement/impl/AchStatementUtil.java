@@ -14,7 +14,9 @@ import static org.example.model.util.statement.impl.Constants.*;
 /**
  * An implementation of {@link StatementUtil} for {@link Achievement} entity.
  */
-public class AchStatementUtil implements StatementUtil<Achievement> {
+public enum AchStatementUtil implements StatementUtil<Achievement> {
+
+    INSTANCE;
 
     /**{@inheritDoc}*/
     @Override
@@ -34,16 +36,5 @@ public class AchStatementUtil implements StatementUtil<Achievement> {
     public void fillStatementWithEntity(PreparedStatement statement,
                                         Achievement entity) throws SQLException {
         fillStatement(statement, List.of(entity.getName(), entity.getFlavor()));
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public void fillStatementWithEntities(PreparedStatement statement,
-                                          List<Achievement> entities)
-            throws SQLException {
-        for (var elem: entities) {
-            fillStatementWithEntity(statement, elem);
-            statement.addBatch();
-        }
     }
 }

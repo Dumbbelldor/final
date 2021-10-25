@@ -14,7 +14,9 @@ import static org.example.model.util.statement.impl.Constants.*;
 /**
  * An implementation of {@link StatementUtil} for {@link User} entity.
  */
-public class UserStatementUtil implements StatementUtil<User> {
+public enum UserStatementUtil implements StatementUtil<User> {
+
+    INSTANCE;
 
     /**{@inheritDoc}*/
     @Override
@@ -40,15 +42,5 @@ public class UserStatementUtil implements StatementUtil<User> {
                                         User entity) throws SQLException {
         fillStatement(statement, List.of(entity.getLogin(), entity.getPassword(),
                 entity.getEmail()));
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public void fillStatementWithEntities(PreparedStatement statement,
-                                          List<User> entities) throws SQLException {
-        for (var elem: entities) {
-            fillStatementWithEntity(statement, elem);
-            statement.addBatch();
-        }
     }
 }

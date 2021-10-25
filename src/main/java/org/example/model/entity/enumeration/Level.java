@@ -1,41 +1,37 @@
 package org.example.model.entity.enumeration;
 
+/**
+ * Representation of a primary key of
+ * the Level table.
+ */
 public enum Level {
 
-    NEWBIE(500, "Newbie"),
-    ROOKIE(1000, "Rookie"),
-    NOVICE(1500, "Novice"),
-    NEOPHYTE(2000, "Neophyte"),
-    INITIATE(2500, "Initiate"),
+    NEWBIE,
+    ROOKIE,
+    NOVICE,
+    NEOPHYTE,
+    INITIATE,
 
-    ADEPT(3000, "Adept"),
-    CAPABLE(4000, "Capable"),
-    PROSPECTIVE(5000, "Prospective"),
-    HOT_SHOT(6000, "Hot-Shot"),
-    RISING_STAR(7000, "Rising Star"),
+    ADEPT,
+    CAPABLE,
+    PROSPECTIVE,
+    HOT_SHOT,
+    RISING_STAR,
 
-    INGENIOUS(8000, "Ingenious"),
-    SCHOLAR(10000, "Scholar"),
-    MASTER_OF_ALL_TRADES(12000, "Jack Of All Trades"),
-    GRAND_CHIEF(14000, "Grand Chief"),
-    GOD_OF_SCIENCE(16000, "God Of Science");
+    INGENIOUS,
+    SCHOLAR,
+    MASTER_OF_ALL_TRADES,
+    GRAND_CHIEF,
+    GOD_OF_SCIENCE;
 
-    private final int levelThreshold;
-    private final String desc;
-
-    Level(int levelThreshold, String desc) {
-        this.levelThreshold = levelThreshold;
-        this.desc = desc;
-    }
-
-    public int getLevelThreshold() {
-        return levelThreshold;
-    }
-
-    public String getDescription() {
-        return desc;
-    }
-
+    /**
+     * Returns next enum constant relatively to the given
+     * if possible, otherwise returns the given constant.
+     *
+     * @param currentLevel an enum constant
+     *
+     * @return next enum constant
+     */
     public static Level next(Level currentLevel) {
         Level result = currentLevel;
         Level[] values = Level.values();

@@ -1,20 +1,14 @@
 package org.example.model.entity.enumeration;
 
+/**
+ * Representation of the primary key
+ * for the Difficulties table
+ */
 public enum Difficulty {
 
-    VERY_EASY("Very Easy"),
-    EASY("Easy"),
-    MEDIUM("Medium"),
-    HARD("Hard"),
-    VERY_HARD("Very Hard");
-
-    private final String desc;
-
-    Difficulty(String desc) {
-        this.desc = desc;
-    }
-
-    public String getDescription() {
-        return desc;
-    }
+    VERY_EASY,
+    EASY,
+    MEDIUM,
+    HARD,
+    VERY_HARD
 }

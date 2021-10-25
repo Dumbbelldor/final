@@ -20,6 +20,9 @@ public class PreviousPageFilter implements Filter {
 
     private static final String FORBIDDEN_AUTH = CommandType.GOTO_AUTHORIZATION.getReferrer();
     private static final String FORBIDDEN_REG = CommandType.GOTO_REGISTRATION.getReferrer();
+    private static final String HEADER_NAME = "referer";
+
+    private static final int GROUP_WITH_MATCHED_URI = 1;
 
     /**
      * Performs actions on resolving and saving information
@@ -31,14 +34,14 @@ public class PreviousPageFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         var referrers = CommandType.getReferrers();
-        String header = req.getHeader("referer");
+        String header = req.getHeader(HEADER_NAME);
         String uri = "/";
 
         if (header != null) {
             Matcher matcher = Pattern.compile(REGEX_MATCH_URI).matcher(header);
 
             if (matcher.find()) {
-                uri = uri.concat(matcher.group(1));
+                uri = uri.concat(matcher.group(GROUP_WITH_MATCHED_URI));
             }
         }
 

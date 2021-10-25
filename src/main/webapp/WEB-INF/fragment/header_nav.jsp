@@ -27,7 +27,6 @@
         class="w3-bar-item w3-button w3-hover-deep-purple"><fmt:message key="button.categories" /></a>
         <a href="${context}/about"
         class="w3-bar-item w3-button w3-hover-deep-purple"><fmt:message key="button.about" /></a>
-        <a class="w3-button">${sessionScope.currentLang}</a>
 
             <div class="w3-dropdown-hover w3-right">
                 <button class="w3-button w3-black w3-hover-deep-purple">
@@ -77,8 +76,6 @@
                     </form>
                 </div>
 
-                <a href="${context}/profile"
-                class="w3-bar-item w3-button w3-right w3-hover-deep-purple"><fmt:message key="button.profile" /></a>
                 <div class="w3-clear"></div>
             </c:when>
             <c:otherwise>

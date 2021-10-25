@@ -15,21 +15,29 @@
     <meta charset="utf-8">
     <title><fmt:message key="text.title" /></title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-image: url(/images/backgrounds/profile_background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
     <c:import url="/WEB-INF/fragment/header_nav.jsp" />
 
-    <header class="w3-container">
+    <header class="w3-container w3-light-grey">
         <h1><fmt:message key="text.title" /></h1>
         <p><fmt:message key="text.header.p" /></p>
     </header>
 
-    <section class="w3-row w3-light-grey">
+    <section class="w3-row">
         <c:forEach var="elem" items="${allCategories}">
             <form action="${context}/category" method="get">
 
                 <div class="w3-container w3-col s4">
-                    <div class="w3-card-4 w3-section">
+                    <div class="w3-card-4 w3-section w3-white">
                         <div class="w3-padding" style="height: 250px">
                             <header class="w3-container" style="height: 25%">
                                 <h1>${elem.name()}</h1>

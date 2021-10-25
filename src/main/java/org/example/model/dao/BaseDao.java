@@ -83,47 +83,4 @@ public interface BaseDao<T extends Entity> {
      * @return true if the operation succeeded
      */
     boolean save(String sql, List<Object> params);
-
-    /**
-     * Transactional save of many entities that are passed to this method.
-     *
-     * @param sql the special SQL string
-     * @param lang an enum constant defining chosen locale
-     * @param entities the entities to be saved
-     *
-     * @return true if the operation succeeded
-     */
-    boolean saveAll(String sql, Language lang, List<T> entities);
-
-    /**
-     * Sets {@link org.example.model.entity.enumeration.Status} to DELETED
-     * by the given id.
-     *
-     * @param sql the special SQL string
-     * @param id an id of a desired entity
-     *
-     * @return true if the operation succeeded
-     */
-    boolean deleteById(String sql, Long id);
-
-    /**
-     * Counts all rows from a table that are retrieved
-     * through passed {@code sql} parameter.
-     *
-     * @param sql the special SQL string
-     * @param params a list of statement parameters to be inserted into SQL
-     *
-     * @return number of rows retrieved as {@link Long}
-     */
-    long count(String sql, List<Object> params);
-
-    /**
-     * Calls {@link #count(String, List)} with nullified
-     * parameters.
-     *
-     * @param sql the special SQL string
-     *
-     * @return number of rows rerieved as {@link Long}
-     */
-    long count(String sql);
 }
