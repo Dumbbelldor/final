@@ -6,7 +6,6 @@ package org.example.model.entity.enumeration;
  */
 public enum Category {
 
-    MATHEMATICS,
     GEOGRAPHY,
     ECONOMICS,
     CHEMISTRY,

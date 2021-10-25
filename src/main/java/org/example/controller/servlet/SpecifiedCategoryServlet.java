@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.model.entity.enumeration.Category;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.entity.wrapper.StatusTaskWrapper;
 import org.example.model.util.helper.RequestHelper;
@@ -57,7 +57,7 @@ public class SpecifiedCategoryServlet extends HttpServlet {
 
             } catch(IllegalArgumentException e) {
                 log.error("Attempted to pass unsupported category name", e);
-                helper.redirect(CommandType.GOTO_GEN_CATEGORIES);
+                helper.redirect(Destination.GOTO_GEN_CATEGORIES);
             }
         } else {
             Category category = (Category) helper.getSessionAttribute(SESSION_CATEGORY);
@@ -65,7 +65,7 @@ public class SpecifiedCategoryServlet extends HttpServlet {
             if (category != null) {
                 preparePage(user, category, req);
             } else {
-                helper.redirect(CommandType.GOTO_GEN_CATEGORIES);
+                helper.redirect(Destination.GOTO_GEN_CATEGORIES);
             }
         }
     }
@@ -88,11 +88,11 @@ public class SpecifiedCategoryServlet extends HttpServlet {
             req.getSession().setAttribute("currentLocalizedCategory", localizedCategory);
             req.getSession().setAttribute("currentTasks", tasks);
 
-            helper.dispatch(CommandType.GOTO_SPEC_CATEGORY);
+            helper.dispatch(Destination.GOTO_SPEC_CATEGORY);
 
         } else {
             log.info(LOG_UNAUTHORIZED_ACCESS);
-            helper.redirect(CommandType.GOTO_AUTHORIZATION);
+            helper.redirect(Destination.GOTO_AUTHORIZATION);
         }
     }
 }

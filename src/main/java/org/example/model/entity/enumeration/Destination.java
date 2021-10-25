@@ -7,7 +7,7 @@ import java.util.Map;
  * Used in conjunction with the {@link org.example.model.util.helper.RequestHelper}
  * to provide destination points for navigation.
  */
-public enum CommandType {
+public enum Destination {
 
     GOTO_HOME("/index.jsp", "/"),
     GOTO_AUTHORIZATION("/WEB-INF/views/authorization.jsp", "/authorization"),
@@ -18,11 +18,11 @@ public enum CommandType {
     GOTO_GEN_CATEGORIES("/WEB-INF/views/categories.jsp", "/categories"),
     GOTO_INFO_PAGE("/WEB-INF/views/about.jsp", "/about");
 
-    private static final Map<String, CommandType> map;
+    private static final Map<String, Destination> map;
 
     static {
         map = new HashMap<>();
-        for (var elem: CommandType.values()) {
+        for (var elem: Destination.values()) {
             map.put(elem.referrer, elem);
         }
     }
@@ -30,7 +30,7 @@ public enum CommandType {
     private final String address;
     private final String referrer;
 
-    CommandType(String address, String referrer) {
+    Destination(String address, String referrer) {
         this.address = address;
         this.referrer = referrer;
     }
@@ -51,15 +51,15 @@ public enum CommandType {
      *
      * @return the enum constant
      */
-    public static CommandType getByReferrer(String referrer) {
-        return map.getOrDefault(referrer, CommandType.GOTO_HOME);
+    public static Destination getByReferrer(String referrer) {
+        return map.getOrDefault(referrer, Destination.GOTO_HOME);
     }
 
     /**
      * Returns a {@link Map} with all available referrers
      * and corresponding enum constants.
      */
-    public static Map<String, CommandType> getReferrers() {
+    public static Map<String, Destination> getReferrers() {
         return map;
     }
 }

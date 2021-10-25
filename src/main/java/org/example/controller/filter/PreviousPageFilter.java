@@ -1,9 +1,9 @@
-package org.example.controller.connection.filter;
+package org.example.controller.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -18,8 +18,8 @@ public class PreviousPageFilter implements Filter {
 
     private static final String REGEX_MATCH_URI = ".+/(\\w+)";
 
-    private static final String FORBIDDEN_AUTH = CommandType.GOTO_AUTHORIZATION.getReferrer();
-    private static final String FORBIDDEN_REG = CommandType.GOTO_REGISTRATION.getReferrer();
+    private static final String FORBIDDEN_AUTH = Destination.GOTO_AUTHORIZATION.getReferrer();
+    private static final String FORBIDDEN_REG = Destination.GOTO_REGISTRATION.getReferrer();
     private static final String HEADER_NAME = "referer";
 
     private static final int GROUP_WITH_MATCHED_URI = 1;
@@ -33,7 +33,7 @@ public class PreviousPageFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest req = (HttpServletRequest) request;
-        var referrers = CommandType.getReferrers();
+        var referrers = Destination.getReferrers();
         String header = req.getHeader(HEADER_NAME);
         String uri = "/";
 
@@ -49,7 +49,7 @@ public class PreviousPageFilter implements Filter {
                 && !uri.equals(FORBIDDEN_REG)) {
 
             req.getSession().setAttribute(
-                    "currentReferrerCT", CommandType.getByReferrer(uri));
+                    "currentReferrerCT", Destination.getByReferrer(uri));
         }
         chain.doFilter(req, response);
     }

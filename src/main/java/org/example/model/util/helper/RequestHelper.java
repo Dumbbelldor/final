@@ -3,7 +3,7 @@ package org.example.model.util.helper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 
 import java.io.IOException;
 
@@ -42,47 +42,47 @@ public enum RequestHelper {
 
     /**
      * Wraps {@code forward} command and performs dispatching
-     * to the {@link CommandType} destination.
+     * to the {@link Destination} destination.
      *
-     * @param commandType an enum type destination
+     * @param destination an enum type destination
      *
      * @throws ServletException when a request hasn't been initialized
      */
-    public void dispatch(CommandType commandType) throws ServletException, IOException {
+    public void dispatch(Destination destination) throws ServletException, IOException {
         if(req == null) {
             throw new ServletException(INIT_ERROR);
         }
 
-        req.getRequestDispatcher(commandType.getAddress()).forward(req, resp);
+        req.getRequestDispatcher(destination.getAddress()).forward(req, resp);
     }
 
     /**
      * Wraps {@link HttpServletResponse#sendRedirect(String)} command
-     * and performs redirect action to the {@link CommandType} destination.
+     * and performs redirect action to the {@link Destination} destination.
      *
-     * @param commandType an enum type destination
+     * @param destination an enum type destination
      *
      * @throws ServletException when a request hasn't been initialized
      */
-    public void redirect(CommandType commandType) throws IOException, ServletException {
+    public void redirect(Destination destination) throws IOException, ServletException {
         if(req == null) {
             throw new ServletException(INIT_ERROR);
         }
 
-        resp.sendRedirect(commandType.getReferrer());
+        resp.sendRedirect(destination.getReferrer());
     }
 
     /**
-     * Redirects {@link #redirect(CommandType)} to a previously
+     * Redirects {@link #redirect(Destination)} to a previously
      * visited page.
      */
     public void redirectWithReferrer() throws IOException, ServletException {
-        CommandType commandType = (CommandType) getSessionAttribute(SESSION_REFERRER);
-        if (commandType == null) {
-            setSessionAttribute(SESSION_REFERRER, CommandType.GOTO_HOME);
-            redirect((CommandType) getSessionAttribute(SESSION_REFERRER));
+        Destination destination = (Destination) getSessionAttribute(SESSION_REFERRER);
+        if (destination == null) {
+            setSessionAttribute(SESSION_REFERRER, Destination.GOTO_HOME);
+            redirect((Destination) getSessionAttribute(SESSION_REFERRER));
         } else {
-            redirect(commandType);
+            redirect(destination);
         }
     }
 

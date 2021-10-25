@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.entity.localization.LocalizedLevel;
 import org.example.model.util.helper.RequestHelper;
@@ -60,9 +60,9 @@ public class ProfileServlet extends HttpServlet {
 
                 helper.setSessionAttribute(SESSION_CURRENT_USER, user);
             }
-            helper.dispatch(CommandType.GOTO_PROFILE);
+            helper.dispatch(Destination.GOTO_PROFILE);
         } else {
-            helper.redirect(CommandType.GOTO_AUTHORIZATION);
+            helper.redirect(Destination.GOTO_AUTHORIZATION);
         }
     }
 

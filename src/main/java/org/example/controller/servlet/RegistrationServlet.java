@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.util.helper.RequestHelper;
 import org.example.model.entity.User;
 import org.example.model.util.security.InputCleaner;
@@ -35,7 +35,7 @@ public class RegistrationServlet extends HttpServlet {
         helper.init(req, resp);
         User user = (User) helper.getSessionAttribute(SESSION_CURRENT_USER);
         if (user == null) {
-            helper.dispatch(CommandType.GOTO_REGISTRATION);
+            helper.dispatch(Destination.GOTO_REGISTRATION);
         } else {
             helper.redirectWithReferrer();
         }
@@ -68,7 +68,7 @@ public class RegistrationServlet extends HttpServlet {
             service.save(user);
             helper.redirectWithReferrer();
         } else {
-            helper.dispatch(CommandType.GOTO_REGISTRATION);
+            helper.dispatch(Destination.GOTO_REGISTRATION);
         }
     }
 }

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import org.example.model.entity.User;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.service.UserService;
 import org.example.model.service.impl.UserServiceImpl;
 import org.example.model.util.helper.RequestHelper;
@@ -74,6 +74,6 @@ public class ImageUploadServlet extends HttpServlet {
                         user.getUserId());
             }
         }
-        helper.redirect(CommandType.GOTO_PROFILE);
+        helper.redirect(Destination.GOTO_PROFILE);
     }
 }

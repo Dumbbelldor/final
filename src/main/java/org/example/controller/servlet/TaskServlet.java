@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.util.helper.RequestHelper;
 import org.example.model.entity.Task;
@@ -67,7 +67,7 @@ public class TaskServlet extends HttpServlet {
             if (task != null) {
                 prepareTask(user, task.getTaskId(), locale, req);
             } else {
-                helper.redirect(CommandType.GOTO_SPEC_CATEGORY);
+                helper.redirect(Destination.GOTO_SPEC_CATEGORY);
             }
         }
     }
@@ -103,16 +103,16 @@ public class TaskServlet extends HttpServlet {
                     helper.setSessionAttribute(SESSION_CURRENT_USER, user);
                 }
 
-                helper.redirect(CommandType.GOTO_SPEC_CATEGORY);
+                helper.redirect(Destination.GOTO_SPEC_CATEGORY);
             } else {
                 /* Typically should not be reached */
                 req.setAttribute("taskAlert", PARAM_ALERT);
-                helper.dispatch(CommandType.GOTO_TASK);
+                helper.dispatch(Destination.GOTO_TASK);
             }
 
         } else {
             req.setAttribute(REQUEST_ALERT, PARAM_ALERT);
-            helper.dispatch(CommandType.GOTO_TASK);
+            helper.dispatch(Destination.GOTO_TASK);
         }
     }
 
@@ -129,15 +129,15 @@ public class TaskServlet extends HttpServlet {
                 /* Without using helper due to jsp attributes visibility breaking */
                 /* Single string representation of attribute "currentTask" */
                 req.getSession().setAttribute("currentTask", currentTask);
-                helper.dispatch(CommandType.GOTO_TASK);
+                helper.dispatch(Destination.GOTO_TASK);
             } else {
                 log.error("Attempted to search for non-existent task");
-                helper.redirect(CommandType.GOTO_SPEC_CATEGORY);
+                helper.redirect(Destination.GOTO_SPEC_CATEGORY);
             }
 
         } else {
             log.info(LOG_UNAUTHORIZED_ACCESS);
-            helper.redirect(CommandType.GOTO_AUTHORIZATION);
+            helper.redirect(Destination.GOTO_AUTHORIZATION);
         }
     }
 }

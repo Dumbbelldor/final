@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.entity.enumeration.CommandType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.util.helper.RequestHelper;
 import org.example.model.entity.User;
@@ -25,6 +27,8 @@ import static org.example.controller.servlet.ServletConstants.*;
 @WebServlet(name = "auth", urlPatterns = "/authorization")
 public class AuthServlet extends HttpServlet {
 
+    private static final Logger log = LogManager.getLogger();
+
     private static final RequestHelper helper = RequestHelper.INSTANCE;
     private static final InputCleaner cleaner = InputCleaner.INSTANCE;
     private static final UserService service = UserServiceImpl.INSTANCE;
@@ -39,7 +43,7 @@ public class AuthServlet extends HttpServlet {
         helper.init(req, resp);
         User user = (User) helper.getSessionAttribute(SESSION_CURRENT_USER);
         if (user == null) {
-            helper.dispatch(CommandType.GOTO_AUTHORIZATION);
+            helper.dispatch(Destination.GOTO_AUTHORIZATION);
         } else {
             helper.redirectWithReferrer();
         }
@@ -62,7 +66,8 @@ public class AuthServlet extends HttpServlet {
             login = cleaner.cleanse(login);
             password = cleaner.cleanse(password);
         } else {
-            helper.redirect(CommandType.GOTO_AUTHORIZATION);
+            log.warn("Attempted to pass null as the parameter");
+            helper.redirect(Destination.GOTO_AUTHORIZATION);
         }
 
         Optional<User> opt = service.findByLogin(login, locale);
@@ -75,11 +80,11 @@ public class AuthServlet extends HttpServlet {
                 req.getSession().setAttribute("currentUser", user);
                 helper.redirectWithReferrer();
             } else {
-                helper.redirect(CommandType.GOTO_AUTHORIZATION);
+                helper.redirect(Destination.GOTO_AUTHORIZATION);
             }
 
         } else {
-            helper.redirect(CommandType.GOTO_REGISTRATION);
+            helper.redirect(Destination.GOTO_REGISTRATION);
         }
     }
 }

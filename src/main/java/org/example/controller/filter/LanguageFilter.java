@@ -1,4 +1,4 @@
-package org.example.controller.connection.filter;
+package org.example.controller.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

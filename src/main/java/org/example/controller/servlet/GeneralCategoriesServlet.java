@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.entity.enumeration.CommandType;
+import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.entity.localization.LocalizedCategory;
 import org.example.model.service.TaskService;
@@ -42,6 +42,6 @@ public class GeneralCategoriesServlet extends HttpServlet {
         /* Without using helper due to jsp attributes visibility breaking */
         /* Single occurrence of the string representation of attribute "allCategories" */
         req.setAttribute("allCategories", categories);
-        helper.dispatch(CommandType.GOTO_GEN_CATEGORIES);
+        helper.dispatch(Destination.GOTO_GEN_CATEGORIES);
     }
 }
