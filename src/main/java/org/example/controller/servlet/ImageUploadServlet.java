@@ -12,6 +12,7 @@ import org.example.model.entity.enumeration.Destination;
 import org.example.model.service.UserService;
 import org.example.model.service.impl.UserServiceImpl;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 import org.example.model.validation.impl.FileValidator;
 
 import java.io.File;
@@ -34,7 +35,7 @@ public class ImageUploadServlet extends HttpServlet {
 
 
     private static final FileValidator validator = FileValidator.INSTANCE;
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
     private static final UserService service = UserServiceImpl.INSTANCE;
 
     /**

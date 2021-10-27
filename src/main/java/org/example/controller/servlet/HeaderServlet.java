@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ import static org.example.controller.servlet.ServletConstants.*;
 @WebServlet(urlPatterns = "/header_nav")
 public class HeaderServlet extends HttpServlet {
 
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
 
     /**
      * Register changes made by users by pressing

@@ -9,6 +9,7 @@ import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.entity.localization.LocalizedLevel;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 import org.example.model.entity.Achievement;
 import org.example.model.entity.User;
 import org.example.model.service.AchService;
@@ -31,7 +32,7 @@ import static org.example.controller.servlet.ServletConstants.*;
 @WebServlet(name = "profile", urlPatterns = "/profile")
 public class ProfileServlet extends HttpServlet {
 
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
 
     private static final UserService userService = UserServiceImpl.INSTANCE;
     private static final AchService achService = AchServiceImpl.INSTANCE;

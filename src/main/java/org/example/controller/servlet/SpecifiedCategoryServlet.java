@@ -12,8 +12,10 @@ import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.entity.wrapper.StatusTaskWrapper;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 import org.example.model.entity.User;
-import org.example.model.util.security.InputCleaner;
+import org.example.model.util.cleaner.InputCleaner;
+import org.example.model.util.cleaner.impl.InputCleanerImpl;
 import org.example.model.service.TaskService;
 import org.example.model.service.impl.TaskServiceImpl;
 
@@ -30,8 +32,8 @@ public class SpecifiedCategoryServlet extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger();
 
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
-    private static final InputCleaner cleaner = InputCleaner.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
+    private static final InputCleaner cleaner = InputCleanerImpl.INSTANCE;
     private static final TaskService service = TaskServiceImpl.INSTANCE;
 
     /**

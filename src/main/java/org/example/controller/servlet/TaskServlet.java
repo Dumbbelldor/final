@@ -10,12 +10,15 @@ import org.apache.logging.log4j.Logger;
 import org.example.model.entity.enumeration.Destination;
 import org.example.model.entity.enumeration.Language;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 import org.example.model.entity.Task;
 import org.example.model.entity.User;
-import org.example.model.util.security.InputCleaner;
+import org.example.model.util.cleaner.InputCleaner;
+import org.example.model.util.cleaner.impl.InputCleanerImpl;
 import org.example.model.service.TaskService;
 import org.example.model.service.impl.TaskServiceImpl;
-import org.example.model.util.listener.UserActivityListener;
+import org.example.model.util.listener.ActivityListener;
+import org.example.model.util.listener.impl.UserActivityListener;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -31,10 +34,10 @@ public class TaskServlet extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger();
 
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
-    private static final InputCleaner cleaner = InputCleaner.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
+    private static final InputCleaner cleaner = InputCleanerImpl.INSTANCE;
     private static final TaskService taskService = TaskServiceImpl.INSTANCE;
-    private static final UserActivityListener listener = UserActivityListener.INSTANCE;
+    private static final ActivityListener listener = UserActivityListener.INSTANCE;
 
     /**
      * If accessor if authorized, prepares and

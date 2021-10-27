@@ -11,6 +11,7 @@ import org.example.model.entity.localization.LocalizedCategory;
 import org.example.model.service.TaskService;
 import org.example.model.service.impl.TaskServiceImpl;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.helper.impl.RequestHelperImpl;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +26,7 @@ import static org.example.controller.servlet.ServletConstants.SESSION_LANGUAGE;
 public class GeneralCategoriesServlet extends HttpServlet {
 
     private static final TaskService service = TaskServiceImpl.INSTANCE;
-    private static final RequestHelper helper = RequestHelper.INSTANCE;
+    private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
 
     /**
      * Displays a localized general categories page.

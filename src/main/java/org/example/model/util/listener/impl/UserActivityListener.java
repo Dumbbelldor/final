@@ -1,4 +1,4 @@
-package org.example.model.util.listener;
+package org.example.model.util.listener.impl;
 
 import jakarta.servlet.ServletException;
 import org.example.model.entity.Achievement;
@@ -12,35 +12,25 @@ import org.example.model.service.UserService;
 import org.example.model.service.impl.AchServiceImpl;
 import org.example.model.service.impl.UserServiceImpl;
 import org.example.model.util.helper.RequestHelper;
+import org.example.model.util.listener.ActivityListener;
 
 import java.util.List;
 
 import static org.example.controller.servlet.ServletConstants.*;
-import static org.example.model.util.listener.UserListenerConstants.*;
+import static org.example.model.util.listener.impl.UserListenerConstants.*;
 
 /**
- * Class that resolves level, experience and
- * achievements as the result of an user's
- * activity.
+ * An implementation of {@link ActivityListener} interface.
  */
-public enum UserActivityListener {
+public enum UserActivityListener implements ActivityListener {
 
     INSTANCE;
 
     private static final UserService userService = UserServiceImpl.INSTANCE;
     private static final AchService achService = AchServiceImpl.INSTANCE;
 
-    /**
-     * After successful solution of the given task this method will
-     * resolve final experience and level gain if possible
-     * for the given user.
-     *
-     * @param helper the distributor of data from the servlet side
-     * @param user a user to apply changes to
-     * @param task a solved task
-     *
-     * @throws ServletException if helper was corrupted
-     */
+    /**{@inheritDoc}*/
+    @Override
     public void resolveLevelAndExp(RequestHelper helper, User user, Task task)
             throws ServletException {
 
@@ -68,15 +58,8 @@ public enum UserActivityListener {
         userService.earnExpAndLevel(updated);
     }
 
-    /**
-     * After successful solution of the given task this method will
-     * resolve achievements if possible for the given user.
-     *
-     * @param helper the distributor of data from the servlet side
-     * @param user a user to apply changes to
-     *
-     * @throws ServletException if helper was corrupted
-     */
+    /**{@inheritDoc}*/
+    @Override
     public void resolveAchievements(RequestHelper helper, User user)
             throws ServletException {
 
@@ -119,6 +102,17 @@ public enum UserActivityListener {
         }
     }
 
+    /**
+     * Attempts to receive a {@link LocalizedLevel} from
+     * {@link RequestHelper#getSessionAttribute(String)},
+     * or else fetches it from a database and saves it in
+     * the session.
+     *
+     * @param helper helper to get information from
+     * @param user whose information will be sought
+     *
+     * @return user's level
+     */
     private LocalizedLevel getLocalizedLevel(RequestHelper helper,
                                              User user) throws ServletException {
         LocalizedLevel level = (LocalizedLevel) helper

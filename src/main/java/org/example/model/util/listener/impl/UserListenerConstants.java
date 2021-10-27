@@ -1,4 +1,4 @@
-package org.example.model.util.listener;
+package org.example.model.util.listener.impl;
 
 /**
  * Private package listing of constants for

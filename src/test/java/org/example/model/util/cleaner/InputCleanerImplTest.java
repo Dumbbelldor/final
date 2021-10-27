@@ -1,10 +1,11 @@
-package org.example.model.util.security;
+package org.example.model.util.cleaner;
 
+import org.example.model.util.cleaner.impl.InputCleanerImpl;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class InputCleanerTest {
+public class InputCleanerImplTest {
 
     private static final String BAD_1 = "?name=<strong>Yoy</strong>";
     private static final String BAD_2 = "https://site.com/home.php=<STYLE>alert(\"XSS\")';</STYLE>";
@@ -16,7 +17,7 @@ public class InputCleanerTest {
     private static final String GOOD_3 = "Login:Password:";
     private static final String GOOD_4 = "?id=Very Heavy Attack";
 
-    private final InputCleaner cleaner = InputCleaner.INSTANCE;
+    private final InputCleaner cleaner = InputCleanerImpl.INSTANCE;
 
     private String actual = null;
     private String expected = null;

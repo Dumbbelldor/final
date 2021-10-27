@@ -1,25 +1,21 @@
-package org.example.model.util.security;
+package org.example.model.util.cleaner.impl;
+
+import org.example.model.util.cleaner.InputCleaner;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class searches for malware inputs from
- * any string and then cleanses it.
+ * An implementation of {@link InputCleaner} interface.
  */
-public enum InputCleaner {
+public enum InputCleanerImpl implements InputCleaner {
 
     INSTANCE;
 
     private static final String REGEX_SCRIPT_CHECKER = "<(.*?)>|\"(.*?)\"";
 
-    /**
-     * Scans the given input and purifies it from unwanted symbols.
-     *
-     * @param string the target string
-     *
-     * @return cleansed string
-     */
+    /**{@inheritDoc}*/
+    @Override
     public String cleanse(String string) {
         String result = string;
         if (result != null && !result.isBlank()) {
