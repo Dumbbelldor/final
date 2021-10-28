@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.model.entity.enumeration.Destination;
+import org.example.model.util.cleaner.InputCleaner;
+import org.example.model.util.cleaner.impl.InputCleanerImpl;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -18,11 +20,11 @@ public class PreviousPageFilter implements Filter {
 
     private static final String REGEX_MATCH_URI = ".+/(\\w+)";
 
-    private static final String FORBIDDEN_AUTH = Destination.GOTO_AUTHORIZATION.getReferrer();
-    private static final String FORBIDDEN_REG = Destination.GOTO_REGISTRATION.getReferrer();
     private static final String HEADER_NAME = "referer";
 
     private static final int GROUP_WITH_MATCHED_URI = 1;
+
+    private static final InputCleaner cleaner = InputCleanerImpl.INSTANCE;
 
     /**
      * Performs actions on resolving and saving information
@@ -38,6 +40,7 @@ public class PreviousPageFilter implements Filter {
         String uri = "/";
 
         if (header != null) {
+            header = cleaner.cleanse(header);
             Matcher matcher = Pattern.compile(REGEX_MATCH_URI).matcher(header);
 
             if (matcher.find()) {
@@ -45,12 +48,15 @@ public class PreviousPageFilter implements Filter {
             }
         }
 
-        if (referrers.containsKey(uri) && !uri.equals(FORBIDDEN_AUTH)
-                && !uri.equals(FORBIDDEN_REG)) {
-
-            req.getSession().setAttribute(
-                    "currentReferrerCT", Destination.getByReferrer(uri));
+        if (referrers.containsKey(uri)) {
+            Destination destination = Destination.getByReferrer(uri);
+            switch (destination) {
+                case GOTO_AUTHORIZATION, GOTO_REGISTRATION -> {}
+                default -> req.getSession().setAttribute(
+                        "currentReferrerCT", destination);
+            }
         }
+
         chain.doFilter(req, response);
     }
 }

@@ -14,10 +14,18 @@
     <meta charset="utf-8">
     <title><fmt:message key="text.title" /></title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-image: url(/images/backgrounds/about_background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
-<body class="w3-image" style="background-image: url(/images/backgrounds/about_background.jpg); background-size: cover; background-attachment: fixed">
+<body>
 
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <div style="height: 100px"></div>
     <section class="w3-container w3-card-4 w3-light-grey w3-center" style="margin: auto; width: 70%">

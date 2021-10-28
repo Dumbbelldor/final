@@ -55,10 +55,9 @@ public enum RequestHelperImpl implements RequestHelper {
         Destination destination = (Destination) getSessionAttribute(SESSION_REFERRER);
         if (destination == null) {
             setSessionAttribute(SESSION_REFERRER, Destination.GOTO_HOME);
-            redirect((Destination) getSessionAttribute(SESSION_REFERRER));
-        } else {
-            redirect(destination);
+            destination = (Destination) getSessionAttribute(SESSION_REFERRER);
         }
+        redirect(destination);
     }
 
     /**{@inheritDoc}*/

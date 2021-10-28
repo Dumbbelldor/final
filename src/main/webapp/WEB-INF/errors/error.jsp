@@ -13,7 +13,7 @@
 </head>
 <body style="background-image: url(/images/backgrounds/reg_background.jpg); background-attachment: fixed">
 
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <div class="w3-container" style="padding: 100px 75px 100px 75px">
         <section class="w3-container w3-card-4 w3-white">

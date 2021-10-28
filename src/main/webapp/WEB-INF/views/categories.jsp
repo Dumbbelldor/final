@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <header class="w3-container w3-light-grey">
         <h1><fmt:message key="text.title" /></h1>

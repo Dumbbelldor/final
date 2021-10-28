@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <div class="w3-container">
 
@@ -42,12 +42,12 @@
                             <c:when test="${user.picture == null}">
                                 <c:set var="profileImage"
                                        value="${context}/images/default_avatar.jpg"
-                                       scope="page" />
+                                       scope="request" />
                             </c:when>
                             <c:otherwise>
                                 <c:set var="profileImage"
                                        value="${context}${user.picture}"
-                                       scope="page" />
+                                       scope="request" />
                             </c:otherwise>
                         </c:choose>
                         <img src="${profileImage}" alt="You" style="width: 300px"/>
@@ -97,9 +97,11 @@
                                             <h3><fmt:message key="text.delete_image" />:</h3>
                                         </div>
                                         <div class="w3-cell">
-                                            <input type="submit"
+                                            <button type="submit"
                                                    name="deleteImage"
                                                    value="${user.userId}">
+                                                <fmt:message key="button.delete_image" />
+                                            </button>
                                         </div>
                                     </div>
                                 </c:otherwise>

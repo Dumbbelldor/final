@@ -29,7 +29,7 @@ public class GeneralCategoriesServlet extends HttpServlet {
     private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
 
     /**
-     * Displays a localized general categories page.
+     * Displays localized general categories page.
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

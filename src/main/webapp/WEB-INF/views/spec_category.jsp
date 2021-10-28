@@ -26,7 +26,7 @@
         }
     </style>
 <body>
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <header class="w3-container w3-light-grey">
         <h2>${category}</h2>

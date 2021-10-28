@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/fragment/header_nav.jsp" />
+    <c:import url="/WEB-INF/fragments/header_nav.jsp" />
 
     <header class="w3-container w3-center" style="padding: 144px 16px; background-image: url(images/backgrounds/def_background.jpg)">
         <h1 class="w3-margin w3-jumbo w3-text-light-grey"><fmt:message key="welcome.text.h1" /></h1>
