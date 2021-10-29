@@ -18,16 +18,14 @@ final class SqlQueries {
             select a.ach_id as ach_id,
                    la.name_|-| as name,
                    la.flavor_|-| as flavor,
-                   a.picture,
-                   a.status
+                   a.picture
             from achievements a
                     inner join localized_ach la on a.ach_id = la.loc_ach_id
             except
             select ua.ach_id as ach_id,
                    la.name_|-| as name,
                    la.flavor_|-| as flavor,
-                   a.picture,
-                   a.status
+                   a.picture
             from users_achievements ua
                      inner join achievements a on a.ach_id = ua.ach_id
                      inner join localized_ach la on a.ach_id = la.loc_ach_id
@@ -37,8 +35,7 @@ final class SqlQueries {
             select ua.ach_id as ach_id,
                    la.name_|-| as name,
                    la.flavor_|-| as flavor,
-                   a.picture,
-                   a.status
+                   a.picture
             from users_achievements ua
                 inner join achievements a on a.ach_id = ua.ach_id
                 inner join localized_ach la on a.ach_id = la.loc_ach_id
@@ -47,7 +44,7 @@ final class SqlQueries {
     /* ---------------------- User Section ---------------------- */
 
     static final String USER_UPDATE_EXP_AND_LEVEL = """
-            update users set experience = ?, level = ?
+            update users set experience = ?, level = ?, changed = now()
             where user_id = ?""";
 
     static final String USER_SELECT_BY_LOGIN = """
@@ -59,11 +56,11 @@ final class SqlQueries {
             where user_id = ?""";
 
     static final String USER_INSERT_IMAGE_BY_ID = """
-            update users set picture = ?
+            update users set picture = ?, changed = now()
             where user_id = ?""";
 
     static final String USER_DELETE_IMAGE_BY_ID = """
-            update users set picture = null
+            update users set picture = null, changed = now()
             where user_id = ?""";
 
     static final String USER_INSERT = """
@@ -86,7 +83,6 @@ final class SqlQueries {
                    u.email as email,
                    u.experience as experience,
                    ll.name_|-| as level,
-                   u.status as status,
                    u.created as created,
                    u.changed as changed,
                    u.picture as picture
@@ -101,7 +97,6 @@ final class SqlQueries {
                    u.email as email,
                    u.experience as experience,
                    ll.name_|-| as level,
-                   u.status as status,
                    u.created as created,
                    u.changed as changed,
                    u.picture as picture
@@ -116,8 +111,7 @@ final class SqlQueries {
             select a.ach_id as ach_id,
                    la.name_|-| as name,
                    la.flavor_|-| as flavor,
-                   a.picture,
-                   a.status
+                   a.picture
             from achievements a
             inner join localized_ach la on a.ach_id = la.loc_ach_id
             where a.ach_id = ?""";
@@ -126,8 +120,7 @@ final class SqlQueries {
             select a.ach_id as ach_id,
                    la.name_|-| as name,
                    la.flavor_|-| as flavor,
-                   a.picture,
-                   a.status
+                   a.picture
             from achievements a
             inner join localized_ach la on a.ach_id = la.loc_ach_id""";
 
@@ -156,10 +149,7 @@ final class SqlQueries {
                    lt.answer_|-| as answer,
                    d.name_|-| as difficulty,
                    c.name_|-| as category,
-                   t.experience as experience,
-                   t.status as status,
-                   t.created as created,
-                   t.changed as changed
+                   t.experience as experience
             from tasks t
             inner join localized_tasks lt on t.task_id = lt.loc_task_id
             inner join difficulties d on d.difficulty = t.difficulty
@@ -173,10 +163,7 @@ final class SqlQueries {
                    lt.answer_|-| as answer,
                    d.name_|-| as difficulty,
                    c.name_|-| as category,
-                   t.experience as experience,
-                   t.status as status,
-                   t.created as created,
-                   t.changed as changed
+                   t.experience as experience
             from tasks t
                      inner join localized_tasks lt on t.task_id = lt.loc_task_id
                      inner join difficulties d on d.difficulty = t.difficulty
@@ -200,17 +187,14 @@ final class SqlQueries {
             inner join categories c on c.category = tasks.category
             group by c.name_|-|""";
 
-    static final String LOCALE_FIND_BY_CATEGORY = """
+    static final String LOCALE_TASK_FIND_BY_CATEGORY = """
             select t.task_id as task_id,
                    lt.description as description,
                    lt.name_|-| as name,
                    lt.answer_|-| as answer,
                    d.name_|-| as difficulty,
                    c.name_|-| as category,
-                   t.experience as experience,
-                   t.status as status,
-                   t.created as created,
-                   t.changed as changed
+                   t.experience as experience
             from tasks t
                 inner join localized_tasks lt on t.task_id = lt.loc_task_id
                 inner join difficulties d on d.difficulty = t.difficulty
@@ -242,10 +226,7 @@ final class SqlQueries {
                    lt.answer_|-| as answer,
                    d.name_|-| as difficulty,
                    c.name_|-| as category,
-                   t.experience as experience,
-                   t.status as status,
-                   t.created as created,
-                   t.changed as changed
+                   t.experience as experience
             from solved_tasks st
                 inner join tasks t on t.task_id = st.task_id
                 inner join localized_tasks lt on t.task_id = lt.loc_task_id

@@ -70,7 +70,8 @@ public enum BasicConnectionPool implements ConnectionPool {
     }
 
     /**
-     * Releases the given connection from its current usage.
+     * Releases a busy proxy connection and returns it
+     * back to the pool.
      *
      * @return true if liberation is successful
      */

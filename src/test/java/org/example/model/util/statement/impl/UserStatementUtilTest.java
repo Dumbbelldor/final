@@ -1,7 +1,6 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.User;
-import org.example.model.entity.enumeration.Status;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -33,7 +32,6 @@ public class UserStatementUtilTest {
         when(resultSet.getString(EMAIL)).thenReturn("email");
         when(resultSet.getInt(EXPERIENCE)).thenReturn(100);
         when(resultSet.getString(LEVEL)).thenReturn("level");
-        when(resultSet.getString(STATUS)).thenReturn(Status.ACTIVE.name());
         when(resultSet.getTimestamp(CREATED))
                 .thenReturn(current);
         when(resultSet.getTimestamp(CHANGED))
@@ -47,7 +45,6 @@ public class UserStatementUtilTest {
                 .setEmail("email")
                 .setExperience(100)
                 .setLevel("level")
-                .setStatus(Status.valueOf("ACTIVE"))
                 .setCreated(current)
                 .setChanged(current)
                 .setPicture("picture")

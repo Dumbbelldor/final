@@ -1,7 +1,5 @@
 package org.example.model.entity;
 
-import org.example.model.entity.enumeration.Status;
-
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -14,7 +12,6 @@ public class Achievement implements Entity, Serializable {
     private String name;
     private String flavor;
     private String picture;
-    private Status status;
 
     private Achievement() {}
 
@@ -34,10 +31,6 @@ public class Achievement implements Entity, Serializable {
         return picture;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,8 +41,7 @@ public class Achievement implements Entity, Serializable {
         if (achId != that.achId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (flavor != null ? !flavor.equals(that.flavor) : that.flavor != null) return false;
-        if (picture != null ? !picture.equals(that.picture) : that.picture != null) return false;
-        return status == that.status;
+        return picture != null ? picture.equals(that.picture) : that.picture == null;
     }
 
     @Override
@@ -58,7 +50,6 @@ public class Achievement implements Entity, Serializable {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (flavor != null ? flavor.hashCode() : 0);
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 
@@ -68,8 +59,7 @@ public class Achievement implements Entity, Serializable {
         sb.append("achId=").append(achId);
         sb.append(", name='").append(name).append('\'');
         sb.append(", flavor='").append(flavor).append('\'');
-        sb.append(", picture=").append(picture).append('\'');
-        sb.append(", status=").append(status);
+        sb.append(", picture='").append(picture).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -99,11 +89,6 @@ public class Achievement implements Entity, Serializable {
 
         public Builder setPicture(String picture) {
             Achievement.this.picture = picture;
-            return this;
-        }
-
-        public Builder setStatus(Status status) {
-            Achievement.this.status = status;
             return this;
         }
 

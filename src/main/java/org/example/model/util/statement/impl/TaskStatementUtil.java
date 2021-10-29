@@ -1,7 +1,6 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.Task;
-import org.example.model.entity.enumeration.Status;
 import org.example.model.util.statement.StatementUtil;
 
 import java.sql.PreparedStatement;
@@ -29,10 +28,6 @@ public enum TaskStatementUtil implements StatementUtil<Task> {
                 .setExperience(resultSet.getInt(EXPERIENCE))
                 .setDifficulty(resultSet.getString(DIFFICULTY))
                 .setCategory(resultSet.getString(CATEGORY))
-                .setStatus(Status.valueOf(
-                        resultSet.getString(STATUS)))
-                .setCreated(resultSet.getTimestamp(CREATED))
-                .setChanged(resultSet.getTimestamp(CHANGED))
                 .build();
     }
 

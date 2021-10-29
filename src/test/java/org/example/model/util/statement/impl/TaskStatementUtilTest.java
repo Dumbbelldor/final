@@ -1,14 +1,12 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.Task;
-import org.example.model.entity.enumeration.Status;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 import static org.example.model.util.statement.impl.Constants.*;
 import static org.testng.Assert.*;
@@ -25,8 +23,6 @@ public class TaskStatementUtilTest {
 
     @BeforeTest
     public void setup() throws SQLException {
-        Timestamp current = new Timestamp(System.currentTimeMillis());
-
         when(resultSet.getLong(TASK_ID)).thenReturn(100L);
         when(resultSet.getString(NAME)).thenReturn("name");
         when(resultSet.getString(DESCRIPTION)).thenReturn("desc");
@@ -34,9 +30,6 @@ public class TaskStatementUtilTest {
         when(resultSet.getInt(EXPERIENCE)).thenReturn(100);
         when(resultSet.getString(DIFFICULTY)).thenReturn("diff");
         when(resultSet.getString(CATEGORY)).thenReturn("cat");
-        when(resultSet.getString(STATUS)).thenReturn(Status.ACTIVE.name());
-        when(resultSet.getTimestamp(CREATED)).thenReturn(current);
-        when(resultSet.getTimestamp(CHANGED)).thenReturn(current);
 
         task = Task.newBuilder()
                 .setTaskId(100L)
@@ -46,9 +39,6 @@ public class TaskStatementUtilTest {
                 .setExperience(100)
                 .setDifficulty("diff")
                 .setCategory("cat")
-                .setStatus(Status.valueOf("ACTIVE"))
-                .setCreated(current)
-                .setChanged(current)
                 .build();
     }
 

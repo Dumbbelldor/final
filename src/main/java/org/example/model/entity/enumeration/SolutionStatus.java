@@ -7,8 +7,8 @@ package org.example.model.entity.enumeration;
  */
 public enum SolutionStatus {
 
-    SOLVED("+"),
-    UNSOLVED("-");
+    SOLVED("+++"),
+    UNSOLVED("---");
 
     private final String desc;
 

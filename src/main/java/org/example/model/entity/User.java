@@ -1,7 +1,5 @@
 package org.example.model.entity;
 
-import org.example.model.entity.enumeration.Status;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -17,7 +15,6 @@ public class User implements Serializable, Entity {
     private String email;
     private int experience;
     private String level;
-    private Status status;
     private Timestamp created;
     private Timestamp changed;
     private String picture;
@@ -48,10 +45,6 @@ public class User implements Serializable, Entity {
         return level;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
     public Timestamp getCreated() {
         return created;
     }
@@ -77,7 +70,6 @@ public class User implements Serializable, Entity {
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (level != null ? !level.equals(user.level) : user.level != null) return false;
-        if (status != user.status) return false;
         if (created != null ? !created.equals(user.created) : user.created != null) return false;
         if (changed != null ? !changed.equals(user.changed) : user.changed != null) return false;
         return picture != null ? picture.equals(user.picture) : user.picture == null;
@@ -91,7 +83,6 @@ public class User implements Serializable, Entity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + experience;
         result = 31 * result + (level != null ? level.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (changed != null ? changed.hashCode() : 0);
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
@@ -107,7 +98,6 @@ public class User implements Serializable, Entity {
         sb.append(", email='").append(email).append('\'');
         sb.append(", experience=").append(experience);
         sb.append(", level='").append(level).append('\'');
-        sb.append(", status=").append(status);
         sb.append(", created=").append(created);
         sb.append(", changed=").append(changed);
         sb.append(", picture='").append(picture).append('\'');
@@ -150,11 +140,6 @@ public class User implements Serializable, Entity {
 
         public Builder setLevel(String level) {
             User.this.level = level;
-            return this;
-        }
-
-        public Builder setStatus(Status status) {
-            User.this.status = status;
             return this;
         }
 

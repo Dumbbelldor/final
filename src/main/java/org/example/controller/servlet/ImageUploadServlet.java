@@ -69,7 +69,7 @@ public class ImageUploadServlet extends HttpServlet {
 
                 String fileName = part.getSubmittedFileName();
                 String fullPath = UPLOAD_PATH.concat(SEPARATOR).concat(fileName);
-                if (validator.validateImage(fileName)) {
+                if (validator.validate(fileName)) {
 
                     if (!Files.exists(Path.of(fullPath))) {
                         part.write(fullPath);

@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Validates a file to be appropriate to some rule.
+ * Validates a file to be appropriate image file.
  */
 public enum FileValidator implements Validator {
 
@@ -22,7 +22,8 @@ public enum FileValidator implements Validator {
      *
      * @return true if it is an image file
      */
-    public boolean validateImage(String filePath) {
+    @Override
+    public boolean validate(String filePath) {
         boolean flag = false;
         if (filePath != null && !filePath.isBlank()) {
             Matcher matcher = Pattern.compile(REGEX_IMAGE_EXT)

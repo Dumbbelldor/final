@@ -1,7 +1,6 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.Achievement;
-import org.example.model.entity.enumeration.Status;
 import org.example.model.util.statement.StatementUtil;
 
 import java.sql.PreparedStatement;
@@ -26,8 +25,6 @@ public enum AchStatementUtil implements StatementUtil<Achievement> {
                 .setName(resultSet.getString(NAME))
                 .setFlavor(resultSet.getString(FLAVOR))
                 .setPicture(resultSet.getString(PICTURE))
-                .setStatus(Status.valueOf(
-                        resultSet.getString(STATUS)))
                 .build();
     }
 

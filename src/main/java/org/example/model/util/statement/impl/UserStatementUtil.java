@@ -1,7 +1,6 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.User;
-import org.example.model.entity.enumeration.Status;
 import org.example.model.util.statement.StatementUtil;
 
 import java.sql.PreparedStatement;
@@ -28,8 +27,6 @@ public enum UserStatementUtil implements StatementUtil<User> {
                 .setEmail(resultSet.getString(EMAIL))
                 .setExperience(resultSet.getInt(EXPERIENCE))
                 .setLevel(resultSet.getString(LEVEL))
-                .setStatus(Status.valueOf(
-                        resultSet.getString(STATUS)))
                 .setCreated(resultSet.getTimestamp(CREATED))
                 .setChanged(resultSet.getTimestamp(CHANGED))
                 .setPicture(resultSet.getString(PICTURE))

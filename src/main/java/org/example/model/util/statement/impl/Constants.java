@@ -20,7 +20,6 @@ final class Constants {
     static final String EMAIL = "email";
     static final String EXPERIENCE = "experience";
     static final String LEVEL = "level";
-    static final String STATUS = "status";
     static final String CREATED = "created";
     static final String CHANGED = "changed";
     static final String DIFFICULTY = "difficulty";

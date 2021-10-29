@@ -48,7 +48,7 @@ public enum TaskServiceImpl implements TaskService {
     /**{@inheritDoc}*/
     @Override
     public List<Task> findByCategory(Category category, Language lang) {
-        return taskDao.findByCategory(LOCALE_FIND_BY_CATEGORY, lang, category);
+        return taskDao.findByCategory(LOCALE_TASK_FIND_BY_CATEGORY, lang, category);
     }
 
     /**{@inheritDoc}*/

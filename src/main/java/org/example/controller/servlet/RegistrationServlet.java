@@ -13,6 +13,8 @@ import org.example.model.util.cleaner.InputCleaner;
 import org.example.model.util.cleaner.impl.InputCleanerImpl;
 import org.example.model.service.UserService;
 import org.example.model.service.impl.UserServiceImpl;
+import org.example.model.validation.Validator;
+import org.example.model.validation.impl.EmailValidator;
 
 import java.io.IOException;
 
@@ -27,6 +29,7 @@ public class RegistrationServlet extends HttpServlet {
     private static final RequestHelper helper = RequestHelperImpl.INSTANCE;
     private static final InputCleaner cleaner = InputCleanerImpl.INSTANCE;
     private static final UserService service = UserServiceImpl.INSTANCE;
+    private static final Validator validator = EmailValidator.INSTANCE;
 
     /**
      * If user is not authorized sends him to registration page,
@@ -61,14 +64,21 @@ public class RegistrationServlet extends HttpServlet {
             password = cleaner.cleanse(password);
             email = cleaner.cleanse(email);
 
-            User user = User.newBuilder()
-                    .setLogin(login)
-                    .setEmail(email)
-                    .setPassword(password)
-                    .build();
+            if (validator.validate(email)) {
 
-            service.save(user);
-            helper.redirectWithReferrer();
+                User user = User.newBuilder()
+                        .setLogin(login)
+                        .setEmail(email)
+                        .setPassword(password)
+                        .build();
+
+                service.save(user);
+                helper.setSessionAttribute(SESSION_CURRENT_USER, user);
+                helper.redirectWithReferrer();
+            } else {
+                helper.dispatch(Destination.GOTO_REGISTRATION);
+            }
+
         } else {
             helper.dispatch(Destination.GOTO_REGISTRATION);
         }

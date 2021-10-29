@@ -1,7 +1,6 @@
 package org.example.model.util.statement.impl;
 
 import org.example.model.entity.Achievement;
-import org.example.model.entity.enumeration.Status;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -28,14 +27,12 @@ public class AchStatementUtilTest {
         when(resultSet.getString(NAME)).thenReturn("name");
         when(resultSet.getString(FLAVOR)).thenReturn("flavor");
         when(resultSet.getString(PICTURE)).thenReturn("pic");
-        when(resultSet.getString(STATUS)).thenReturn(Status.ACTIVE.name());
 
         achievement = Achievement.newBuilder()
                 .setAchId(123L)
                 .setName("name")
                 .setFlavor("flavor")
                 .setPicture("pic")
-                .setStatus(Status.valueOf("ACTIVE"))
                 .build();
     }
 

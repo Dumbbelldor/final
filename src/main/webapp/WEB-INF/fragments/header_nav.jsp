@@ -70,7 +70,7 @@
                                     type="submit"
                                     value="exit"
                                     name="exit">
-                                Exit
+                                <fmt:message key="button.exit" />
                             </button>
                         </div>
                     </form>

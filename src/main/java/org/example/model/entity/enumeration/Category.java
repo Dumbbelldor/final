@@ -9,5 +9,7 @@ public enum Category {
     GEOGRAPHY,
     ECONOMICS,
     CHEMISTRY,
-    PHYSICS
+    PHYSICS,
+    BIOLOGY,
+    HISTORY
 }

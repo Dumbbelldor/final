@@ -2,6 +2,7 @@ package org.example.model.dao.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.controller.connection.ConnectionPool;
 import org.example.controller.connection.impl.BasicConnectionPool;
 import org.example.controller.connection.impl.ProxyConnection;
 import org.example.model.dao.BaseDao;
@@ -34,7 +35,7 @@ public class BaseDaoImpl<T extends Entity> implements BaseDao<T> {
     protected static final int PARAM_SECOND = 2;
     protected static final int PARAM_THIRD = 3;
 
-    protected final BasicConnectionPool pool;
+    protected final ConnectionPool pool;
 
     private final StatementUtil<T> utils;
 

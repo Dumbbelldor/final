@@ -15,7 +15,6 @@ public final class ServletConstants {
     public static final String SESSION_REFERRER = "currentReferrerCT";
     public static final String SESSION_CATEGORY = "currentCategory";
     public static final String SESSION_LOCALIZED_LEVEL = "currentLocalizedLevel";
-    public static final String SESSION_USERS_ACH = "currentUserAch";
 
     /* Request ServletConstants */
     public static final String REQUEST_TASK = "task";
